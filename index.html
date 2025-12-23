@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Architect's Multiverse | YSH1537</title>
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Noto+Sans+KR:wght@300;400;500;700&family=Orbitron:wght@400;700;900&display=swap"
+        rel="stylesheet">
 
     <!-- AdSense (Preserved) -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5874227298630347" crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5874227298630347"
+        crossorigin="anonymous"></script>
 
     <style>
         :root {
@@ -29,9 +33,10 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Noto Sans KR', 'Inter', sans-serif;
+            /* 한글 폰트 우선 */
             background-color: var(--bg-dark);
-            background-image: 
+            background-image:
                 radial-gradient(circle at 50% 0%, #1a1a40 0%, transparent 60%),
                 radial-gradient(circle at 80% 80%, #150020 0%, transparent 50%);
             color: #fff;
@@ -41,13 +46,18 @@
             align-items: center;
             justify-content: center;
             overflow-x: hidden;
+            word-break: keep-all;
+            /* 한글 줄바꿈 개선 */
         }
 
         /* Animated Grid Background */
         .grid-bg {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
                 linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
             background-size: 50px 50px;
@@ -60,8 +70,13 @@
         }
 
         @keyframes moveGrid {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(50px); }
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(50px);
+            }
         }
 
         .container {
@@ -73,25 +88,27 @@
         }
 
         h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-family: 'Orbitron', 'Noto Sans KR', sans-serif;
+            font-size: clamp(2.0rem, 4vw, 3.5rem);
+            /* 모바일 대응 크기 조정 */
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 4px;
+            letter-spacing: 2px;
             background: linear-gradient(180deg, #fff, #888);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 0.5rem;
             text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+            line-height: 1.2;
         }
 
         .subtitle {
-            font-size: clamp(1rem, 2vw, 1.2rem);
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
             color: var(--neon-blue);
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             margin-bottom: 3rem;
-            text-transform: uppercase;
-            opacity: 0.8;
+            opacity: 0.9;
+            font-weight: 500;
         }
 
         .portal-grid {
@@ -122,7 +139,10 @@
         .card::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
             transform: translateX(-100%);
             transition: 0.5s;
@@ -150,17 +170,20 @@
         }
 
         .card h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
+            font-family: 'Noto Sans KR', sans-serif;
+            /* 한글 폰트 적용 */
+            font-size: 1.4rem;
+            font-weight: 700;
             margin-bottom: 1rem;
             color: var(--card-color);
         }
 
         .card p {
-            color: #aaa;
+            color: #bbb;
             font-size: 0.95rem;
             line-height: 1.6;
             margin-bottom: 2rem;
+            font-weight: 300;
         }
 
         .card-btn {
@@ -170,11 +193,11 @@
             background: transparent;
             border: 1px solid var(--card-color);
             color: var(--card-color);
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0;
             transition: 0.3s;
-            text-transform: uppercase;
         }
 
         .card:hover .card-btn {
@@ -187,7 +210,8 @@
         .card.main {
             --card-color: var(--neon-blue);
             --card-glow: rgba(0, 243, 255, 0.4);
-            grid-column: 1 / -1; /* Full width on mobile/tablet */
+            grid-column: 1 / -1;
+            /* Full width on mobile/tablet */
         }
 
         .card.game {
@@ -215,22 +239,23 @@
             margin: 2rem auto;
             border-radius: 10px;
             overflow: hidden;
-            background: rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.05);
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
     </style>
 </head>
+
 <body>
 
     <div class="grid-bg"></div>
 
     <div class="container">
         <h1>Cinematic Multiverse</h1>
-        <div class="subtitle">Architect : Yesol Heo</div>
+        <div class="subtitle">[ 멀티버스 크리에이터 : 허예솔 ]</div>
 
         <!-- Top Ad -->
         <div class="ad-unit">
-             <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5874227298630347" data-ad-slot="auto"
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5874227298630347" data-ad-slot="auto"
                 data-ad-format="auto" data-full-width-responsive="true"></ins>
             <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
@@ -239,31 +264,40 @@
             <!-- Main Portfolio -->
             <a href="https://www.heoyesol.kr" class="card main">
                 <div class="card-icon">🌌</div>
-                <h2>The Main Universe</h2>
-                <p>Experience the immersive WebGL portfolio. Travel through sectors, explore labs, and dive into the architect's vision.</p>
-                <div class="card-btn">Enter Universe</div>
+                <h2>시네마틱 3D 포트폴리오</h2>
+                <p>
+                    WebGL로 구현된 몰입형 3D 포트폴리오입니다.<br>
+                    우주를 탐험하며 저의 프로젝트와 기술력을 시네마틱하게 경험해보세요.
+                </p>
+                <div class="card-btn">포트폴리오 입장하기</div>
             </a>
 
             <!-- Game Project -->
             <a href="/game/" class="card game">
                 <div class="card-icon">🧬</div>
-                <h2>Creature Lab</h2>
-                <p>Collect species, research DNA, and battle in this multiverse simulation capability test.</p>
-                <div class="card-btn">Initialize Lab</div>
+                <h2>크리처 연구소 (웹 게임)</h2>
+                <p>
+                    크리처를 수집하고 육성하는 웹 시뮬레이션 게임입니다.<br>
+                    다양한 종을 발견하고 도감을 완성하는 재미를 느껴보세요.
+                </p>
+                <div class="card-btn">게임 플레이</div>
             </a>
 
             <!-- GitHub -->
             <a href="https://github.com/ysh1537" class="card github">
                 <div class="card-icon">💻</div>
-                <h2>Source Code</h2>
-                <p>Access the blueprints. Review the open-source architecture behind these realities.</p>
-                <div class="card-btn">Access Repo</div>
+                <h2>GitHub 저장소</h2>
+                <p>
+                    모든 프로젝트의 소스 코드를 확인하세요.<br>
+                    개발 과정과 아키텍처를 투명하게 공개합니다.
+                </p>
+                <div class="card-btn">소스 코드 보기</div>
             </a>
         </div>
 
         <!-- Bottom Ad -->
         <div class="ad-unit">
-             <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5874227298630347" data-ad-slot="auto"
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5874227298630347" data-ad-slot="auto"
                 data-ad-format="auto" data-full-width-responsive="true"></ins>
             <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
@@ -274,4 +308,5 @@
     </div>
 
 </body>
+
 </html>
