@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Noto+Sans+KR:wght@300;400;500;700&family=Orbitron:wght@400;700;900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
         rel="stylesheet">
 
     <!-- AdSense (Preserved) -->
@@ -18,240 +18,206 @@
         crossorigin="anonymous"></script>
 
     <style>
-        :root {
-            --neon-blue: #00f3ff;
-            --neon-purple: #bc13fe;
-            --bg-dark: #050510;
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        :root {
+            --bg: #0a0a0a;
+            --text: #fafafa;
+            --text-muted: #666;
+            --accent: #3b82f6;
+            --card-bg: rgba(255, 255, 255, 0.02);
+            --card-border: rgba(255, 255, 255, 0.06);
+            --card-hover: rgba(255, 255, 255, 0.04);
+        }
+
         body {
-            font-family: 'Noto Sans KR', 'Inter', sans-serif;
-            /* 한글 폰트 우선 */
-            background-color: var(--bg-dark);
-            background-image:
-                radial-gradient(circle at 50% 0%, #1a1a40 0%, transparent 60%),
-                radial-gradient(circle at 80% 80%, #150020 0%, transparent 50%);
-            color: #fff;
+            font-family: 'Noto Sans KR', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            overflow-x: hidden;
-            word-break: keep-all;
-            /* 한글 줄바꿈 개선 */
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Animated Grid Background */
-        .grid-bg {
+        /* Subtle gradient overlay */
+        body::before {
+            content: '';
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background-image:
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            perspective: 500px;
-            transform-style: preserve-3d;
-            animation: moveGrid 20s linear infinite;
-            z-index: -1;
-            opacity: 0.5;
-            mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
-        }
-
-        @keyframes moveGrid {
-            0% {
-                transform: translateY(0);
-            }
-
-            100% {
-                transform: translateY(50px);
-            }
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(59, 130, 246, 0.08), transparent);
+            pointer-events: none;
+            z-index: 0;
         }
 
         .container {
-            max-width: 1200px;
-            width: 90%;
-            z-index: 10;
+            max-width: 900px;
+            width: 100%;
+            padding: 60px 24px;
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
             text-align: center;
-            padding: 40px 0;
+            margin-bottom: 80px;
         }
 
         h1 {
-            font-family: 'Orbitron', 'Noto Sans KR', sans-serif;
-            font-size: clamp(2.0rem, 4vw, 3.5rem);
-            /* 모바일 대응 크기 조정 */
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            background: linear-gradient(180deg, #fff, #888);
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 12px;
+            background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0.6) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
-            line-height: 1.2;
         }
 
-        .subtitle {
-            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
-            color: var(--neon-blue);
-            letter-spacing: 1px;
-            margin-bottom: 3rem;
-            opacity: 0.9;
-            font-weight: 500;
+        .tagline {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
         }
 
-        .portal-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 2rem;
-            width: 100%;
+        /* Cards Grid */
+        .grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
         }
 
         .card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px 30px;
-            text-decoration: none;
-            color: #fff;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            group: card;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
-            transform: translateX(-100%);
-            transition: 0.5s;
+            gap: 20px;
+            padding: 24px 28px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.2s ease;
         }
 
         .card:hover {
-            transform: translateY(-10px) scale(1.02);
-            border-color: var(--card-color);
-            box-shadow: 0 10px 40px -10px var(--card-glow);
-        }
-
-        .card:hover::before {
-            transform: translateX(100%);
+            background: var(--card-hover);
+            border-color: rgba(255, 255, 255, 0.12);
+            transform: translateY(-2px);
         }
 
         .card-icon {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            filter: drop-shadow(0 0 10px var(--card-glow));
-            transition: transform 0.3s;
-        }
-
-        .card:hover .card-icon {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .card h2 {
-            font-family: 'Noto Sans KR', sans-serif;
-            /* 한글 폰트 적용 */
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
             font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--card-color);
+            flex-shrink: 0;
         }
 
-        .card p {
-            color: #bbb;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 2rem;
-            font-weight: 300;
+        .card-content {
+            flex: 1;
         }
 
-        .card-btn {
-            margin-top: auto;
-            padding: 12px 30px;
-            border-radius: 50px;
-            background: transparent;
-            border: 1px solid var(--card-color);
-            color: var(--card-color);
-            font-family: 'Noto Sans KR', sans-serif;
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .card-desc {
             font-size: 0.9rem;
-            font-weight: 700;
-            letter-spacing: 0;
-            transition: 0.3s;
+            color: var(--text-muted);
+            line-height: 1.5;
         }
 
-        .card:hover .card-btn {
-            background: var(--card-color);
-            color: #000;
-            box-shadow: 0 0 20px var(--card-glow);
+        .card-arrow {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            transition: transform 0.2s ease;
         }
 
-        /* Specific Card Styles */
-        .card.main {
-            --card-color: var(--neon-blue);
-            --card-glow: rgba(0, 243, 255, 0.4);
-            grid-column: 1 / -1;
-            /* Full width on mobile/tablet */
+        .card:hover .card-arrow {
+            transform: translateX(4px);
+            color: var(--text);
         }
 
-        .card.game {
-            --card-color: #ff0055;
-            --card-glow: rgba(255, 0, 85, 0.4);
+        /* Featured card */
+        .card.featured {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%);
+            border-color: rgba(59, 130, 246, 0.2);
         }
 
-        .card.github {
-            --card-color: #ffffff;
-            --card-glow: rgba(255, 255, 255, 0.3);
+        .card.featured:hover {
+            border-color: rgba(59, 130, 246, 0.4);
         }
 
-        footer {
-            margin-top: 4rem;
-            color: #444;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        .card.featured .card-icon {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
         }
 
-        /* AdSense Container Styling */
+        /* Ad container */
         .ad-unit {
-            width: 100%;
-            max-width: 728px;
-            margin: 2rem auto;
-            border-radius: 10px;
-            overflow: hidden;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin: 40px 0;
+            padding: 20px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            border: 1px solid var(--card-border);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        footer a:hover {
+            color: var(--text);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .card {
+                padding: 20px;
+            }
+
+            .card-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
 
 <body>
-
-    <div class="grid-bg"></div>
-
     <div class="container">
-        <h1>허예솔</h1>
-        <div class="subtitle">Product Manager</div>
+        <header>
+            <h1>허예솔</h1>
+            <p class="tagline">Product Manager</p>
+        </header>
 
         <!-- Top Ad -->
         <div class="ad-unit">
@@ -260,38 +226,35 @@
             <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
 
-        <div class="portal-grid">
+        <div class="grid">
             <!-- Main Portfolio -->
-            <a href="https://www.heoyesol.kr" class="card main">
+            <a href="https://www.heoyesol.kr" class="card featured">
                 <div class="card-icon">🌌</div>
-                <h2>시네마틱 3D 포트폴리오</h2>
-                <p>
-                    WebGL로 구현된 몰입형 3D 포트폴리오입니다.<br>
-                    우주를 탐험하며 저의 프로젝트와 기술력을 시네마틱하게 경험해보세요.
-                </p>
-                <div class="card-btn">포트폴리오 입장하기</div>
+                <div class="card-content">
+                    <div class="card-title">3D 포트폴리오</div>
+                    <div class="card-desc">WebGL로 구현된 인터랙티브 포트폴리오</div>
+                </div>
+                <span class="card-arrow">→</span>
             </a>
 
             <!-- Game Project -->
-            <a href="/game/" class="card game">
+            <a href="/game/" class="card">
                 <div class="card-icon">🧬</div>
-                <h2>크리처 연구소 (웹 게임)</h2>
-                <p>
-                    크리처를 수집하고 육성하는 웹 시뮬레이션 게임입니다.<br>
-                    다양한 종을 발견하고 도감을 완성하는 재미를 느껴보세요.
-                </p>
-                <div class="card-btn">게임 플레이</div>
+                <div class="card-content">
+                    <div class="card-title">크리처 연구소</div>
+                    <div class="card-desc">웹 기반 수집형 시뮬레이션 게임</div>
+                </div>
+                <span class="card-arrow">→</span>
             </a>
 
             <!-- GitHub -->
-            <a href="https://github.com/ysh1537" class="card github">
+            <a href="https://github.com/ysh1537" class="card">
                 <div class="card-icon">💻</div>
-                <h2>GitHub 저장소</h2>
-                <p>
-                    모든 프로젝트의 소스 코드를 확인하세요.<br>
-                    개발 과정과 아키텍처를 투명하게 공개합니다.
-                </p>
-                <div class="card-btn">소스 코드 보기</div>
+                <div class="card-content">
+                    <div class="card-title">GitHub</div>
+                    <div class="card-desc">프로젝트 소스 코드</div>
+                </div>
+                <span class="card-arrow">→</span>
             </a>
         </div>
 
@@ -303,10 +266,9 @@
         </div>
 
         <footer>
-            © 2024 Yesol Heo
+            © 2024 <a href="mailto:ysh1537@gmail.com">Yesol Heo</a>
         </footer>
     </div>
-
 </body>
 
 </html>
