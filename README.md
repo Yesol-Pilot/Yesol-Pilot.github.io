@@ -1,5 +1,7 @@
 # 허예솔 (Yesol Heo) | Cinematic Metaverse Director
 
+![The Semantic Universe](images/semantic_universe_hub_banner.webp)
+
 **"The Semantic Universe"**에 오신 것을 환영합니다.
 이곳은 허예솔의 모든 시네마틱 유니버스로 연결되는 **중앙 허브(Central Hub)**입니다.
 
